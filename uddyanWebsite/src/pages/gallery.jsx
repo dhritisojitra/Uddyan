@@ -73,7 +73,7 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
-    <div className="bg-gray-100 min-h-screen py-10 px-6">
+    <div className="bg-[#FFFDEB] min-h-screen py-10 px-6">
       <h1 className="text-3xl font-bold text-center text-[#007FFF] mb-10">
         Gallery
       </h1>

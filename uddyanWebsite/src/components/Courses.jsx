@@ -5,12 +5,13 @@ import img1 from "../assets/img1.jpeg";
 
 export default function Courses() {
   return (
-    <div className="min-h-screen bg-white text-gray-800 px-6 py-10">
+    <div className="min-h-screen bg-[#FFFDEB] text-gray-800 px-6 py-10">
       <h1 className="text-3xl font-bold text-center text-[#007FFF] mb-10">
         Explore Our STEM Courses
       </h1>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+
         {courses.map((course) => (
           <Link
             to={`/courses/${course.id}`}

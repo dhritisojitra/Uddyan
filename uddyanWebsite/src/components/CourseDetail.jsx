@@ -8,6 +8,7 @@ export default function CourseDetail() {
   if (!course) return <p className="text-center mt-20">Course not found.</p>;
 
   return (
+    <div className="bg-[#FFFDEB] min-h-screen">
     <div className="max-w-4xl mx-auto px-6 py-10">
       <h1 className="text-3xl font-bold text-[#007FFF] mb-4">{course.title}</h1>
       <img
@@ -38,6 +39,7 @@ export default function CourseDetail() {
       >
         ← Back to Courses
       </Link>
+    </div>
     </div>
   );
 }
