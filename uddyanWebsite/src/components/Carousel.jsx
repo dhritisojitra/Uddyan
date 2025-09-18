@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import img1 from "../assets/img1.jpeg";
-import img2 from "../assets/img2.jpeg";
-import img3 from "../assets/img3.jpeg";
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -12,25 +10,35 @@ export default function Carousel() {
   const slides = [
     { 
       id: 1, 
-      img: "/api/placeholder/800/500", 
+      img: img1, 
       title: "Fun Learning",
-      description: "Engaging hands-on experiments that make learning exciting and memorable for students of all ages.",
+      description: `STEM education is all about Learning by Doing not by memorizing. 
+      It includes four major disciplines - Science, Technology, Engineering and Mathematics. 
+      These four disciplines are the main driving force of global economy and help maintain well-being of the society at large. 
+      STEM learning is all about Experimenting. This helps children to find alternative solutions to their problems.`,
       color: "from-blue-500 to-purple-600"
     },
     { 
       id: 2, 
-      img: "/api/placeholder/800/500", 
+      img: img1, 
       title: "Explore Science",
-      description: "Discover the wonders of science through interactive experiments and real-world applications.",
+      description: `Performing STEM learning activities together in a group promotes team spirit. 
+      Children learn to apply the STEM skills to solve real world problems and challenges. 
+      There is no stipulated age or time to start the basics of STEM that means it is never too early or too late to start teaching your child.`,
       color: "from-green-500 to-teal-600"
     },
     { 
       id: 3, 
-      img: "/api/placeholder/800/500", 
+      img: img1, 
       title: "Creative Innovation",
-      description: "Foster creativity and innovation through DIY projects and cutting-edge STEM activities.",
+      description: `The skill-set shortage is critical to the employability and our economy. 
+      Investing in STEM education early for children is no more a luxury today but a necessity. 
+      The only use of technology is insufficient to fill the STEM skill-set gap. 
+      We need our children to learn hands-on and be more interactive by blending the STEM activities in their education early on. 
+      Exposure to STEM activities develop logical reasoning, critical thinking, problem solving, creativity, innovation, inquiry, collaboration and many others skills in children. 
+      The main purpose of STEM education is to inculcate innovation and entrepreneurship qualities.`,
       color: "from-orange-500 to-red-600"
-    },
+    }
   ];
 
   useEffect(() => {
@@ -39,25 +47,15 @@ export default function Carousel() {
 
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, [isAutoPlaying, slides.length]);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const goToSlide = (index) => setCurrentSlide(index);
 
   return (
     <div className="bg-[#FFFFF0] py-16 px-6">
@@ -72,10 +70,8 @@ export default function Carousel() {
           </p>
         </div>
 
-        {/* Main Carousel Container */}
+        {/* Main Carousel */}
         <div className={`relative overflow-hidden rounded-3xl shadow-2xl bg-white transition-all duration-1000 delay-300 ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
-          
-          {/* Slides Container */}
           <div className="relative h-[600px] overflow-hidden">
             {slides.map((slide, index) => (
               <div
@@ -92,39 +88,22 @@ export default function Carousel() {
                   {/* Image Section */}
                   <div className="relative overflow-hidden">
                     <img
-                      src={img1}
+                      src={slide.img}
                       alt={slide.title}
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-r ${slide.color} opacity-20`}></div>
-                    
-                    {/* Floating Elements */}
-                    <div className="absolute top-6 left-6">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-                        <span className="text-sm font-semibold text-gray-700">
-                          {String(index + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
-                        </span>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Content Section */}
                   <div className="flex flex-col justify-center p-12 bg-gradient-to-br from-white to-gray-50">
                     <div className="space-y-6">
-                      <div className={`inline-block px-4 py-2 bg-gradient-to-r ${slide.color} rounded-full`}>
-                        <span className="text-white font-semibold text-sm tracking-wide uppercase">
-                          STEM Excellence
-                        </span>
-                      </div>
-                      
                       <h3 className="text-4xl font-bold text-gray-800 leading-tight">
                         {slide.title}
                       </h3>
-                      
-                      <p className="text-gray-600 text-lg leading-relaxed">
+                      <p className="text-gray-600 text-lg leading-relaxed whitespace-pre-line">
                         {slide.description}
                       </p>
-                      
                     </div>
                   </div>
                 </div>
@@ -132,33 +111,16 @@ export default function Carousel() {
             ))}
           </div>
 
-          {/* Navigation Buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 group z-10"
-          >
-            <ChevronLeft className="w-6 h-6 text-gray-700 group-hover:text-[#007FFF]" />
+          {/* Navigation */}
+          <button onClick={prevSlide} className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/90 shadow-lg rounded-full p-3 z-10">
+            <ChevronLeft className="w-6 h-6 text-gray-700" />
           </button>
-          
-          <button
-            onClick={nextSlide}
-            className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 group z-10"
-          >
-            <ChevronRight className="w-6 h-6 text-gray-700 group-hover:text-[#007FFF]" />
+          <button onClick={nextSlide} className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/90 shadow-lg rounded-full p-3 z-10">
+            <ChevronRight className="w-6 h-6 text-gray-700" />
           </button>
-
-
-
-          {/* Progress Bar */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
-            <div 
-              className="h-full bg-gradient-to-r from-[#007FFF] to-yellow-500 transition-all duration-700 ease-out"
-              style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
-            ></div>
-          </div>
         </div>
 
-        {/* Dot Navigation */}
+        {/* Dots */}
         <div className="flex justify-center mt-8 gap-3">
           {slides.map((_, index) => (
             <button
@@ -170,21 +132,6 @@ export default function Carousel() {
                   : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
               }`}
             />
-          ))}
-        </div>
-
-        {/* Stats Section */}
-        <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          {[
-            { number: "500+", label: "Students Trained", icon: "🎓" },
-            { number: "50+", label: "Projects Completed", icon: "🔬" },
-            { number: "15+", label: "STEM Programs", icon: "🚀" }
-          ].map((stat, index) => (
-            <div key={index} className="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="text-4xl mb-2">{stat.icon}</div>
-              <div className="text-3xl font-bold text-[#007FFF] mb-1">{stat.number}</div>
-              <div className="text-gray-600 font-medium">{stat.label}</div>
-            </div>
           ))}
         </div>
       </div>
