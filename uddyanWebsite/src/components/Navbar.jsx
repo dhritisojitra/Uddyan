@@ -53,6 +53,14 @@ const Navbar = () => {
           </li>
           <li>
             <Link
+              to="/contact"
+              className="hover:text-white cursor-pointer transition-colors"
+            >
+              Contact Us
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/CoursesPage"
               className="hover:text-white cursor-pointer transition-colors"
             >
