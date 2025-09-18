@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import img33 from "../assets/img33.jpeg";
+import img29 from "../assets/img29.jpeg";
+import img30 from "../assets/img30.jpeg";
+import img31 from "../assets/img31.jpeg";
 
 const AboutUs = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,7 +11,7 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className="bg-[#FFFDEB] min-h-screen py-12 px-6">
+    <div className="bg-[#FFFDEB] min-h-screen py-12 px-2">
       <h1
         className={`text-4xl font-bold text-center text-[#007FFF] mb-10 transition-all duration-1000 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
@@ -19,7 +21,7 @@ const AboutUs = () => {
       </h1>
 
       {/* 🔹 Main Grid (Text + Image) */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
         {/* Text Section */}
         <div
           className={`space-y-6 transition-all duration-1000 delay-300 ${
@@ -157,14 +159,23 @@ const AboutUs = () => {
             isVisible ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
           }`}
         >
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#007FFF] to-yellow-500 rounded-lg blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-            <img
-              src={img33}
-              alt="UDDYAN STEM Lab"
-              className="relative rounded-lg shadow-xl w-200 h-350 object-cover transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl border-4 border-white"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="flex flex-col gap-6">
+            {[img29, img30, img31].map((src, i) => (
+              <div key={i} className="relative group">
+                {/* Gradient glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#007FFF] to-yellow-500 rounded-lg blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+
+                {/* Image */}
+                <img
+                  src={src}
+                  alt={`UDDYAN image ${i + 1}`}
+                  className="relative rounded-lg shadow-xl w-150 h-96 object-cover transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl border-4 border-white"
+                />
+
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

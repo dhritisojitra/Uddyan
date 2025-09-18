@@ -3,8 +3,8 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactUs() {
   return (
-    <div className="bg-[#FFFDEB] min-h-screen flex items-center justify-center px-6 py-16">
-      <div className="max-w-3xl w-full bg-white rounded-2xl shadow-xl p-10 transition-all transform hover:scale-[1.02] hover:shadow-2xl duration-500 animate-pulse-once">
+    <div className="bg-[#FFFDEB] min-h-screen flex items-center justify-center px-16 py-16">
+      <div className="max-w-8xl w-full bg-white rounded-2xl shadow-xl p-10 transition-all transform hover:scale-[1.02] hover:shadow-2xl duration-500 animate-pulse-once">
         <h1 className="text-4xl font-bold text-[#007FFF] text-center mb-8 animate-bounce-in">
           Contact Us
         </h1>

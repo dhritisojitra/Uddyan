@@ -58,7 +58,7 @@ export default function Carousel() {
   const goToSlide = (index) => setCurrentSlide(index);
 
   return (
-    <div className="bg-[#FFFFF0] py-16 px-6">
+    <div className="bg-[#D0EBFF] py-16 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className={`text-center mb-12 transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>

@@ -33,12 +33,12 @@ const cards = [
 
 const Cards = () => {
   return (
-    <section className="py-16 px-6 bg-[#D0EBFF]">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+    <section className="py-16 px-16 bg-[#FFFFF0]">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 justify-items-center">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="relative rounded-2xl shadow-md overflow-hidden flex flex-col transition-transform transform hover:scale-105 w-64 h-[420px]" // 👈 narrower & taller
+            className="relative rounded-2xl shadow-md overflow-hidden flex flex-col transition-transform transform hover:scale-105 w-70 h-100" 
           >
             <div
               className="absolute inset-0 bg-cover bg-center"
