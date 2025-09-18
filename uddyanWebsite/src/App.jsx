@@ -43,6 +43,8 @@ function App() {
 
         {/* Contact Us page */}
         <Route path="/contact" element={<ContactUs />} /> 
+
+        <Route path="/courses/:id" element={<CourseDetail />} />
       </Routes>
     </Router>
   );
