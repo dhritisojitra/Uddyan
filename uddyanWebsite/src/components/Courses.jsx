@@ -1,315 +1,402 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { ChevronDown, ChevronUp, Clock, BookOpen, Target, Users } from "lucide-react";
+
+// Course data extracted from .docx
 const courses = [
-  // Age Group: 7-9 years
   {
-    id: "7-9-environment-science",
-    title: "Environment Science Explorer",
-    ageGroup: "7-9 years",
-    description:
-      "Discover the wonders of our environment through hands-on experiments. Learn about plants, animals, weather, and ecosystems through interactive DIY activities.",
+    id: "7-9",
+    title: "STEM Explorer (7–9 years)",
+    ageGroup: "7–9 years",
+    description: "Develop STEM skill-sets through fun, hands-on activities.",
     modules: [
       {
         name: "Module 1",
         activities: 12,
         duration: "18 hrs",
-        topics: ["Basic ecology", "Plant life cycles", "Weather patterns", "Water cycle"],
+        description: "Foundation level hands-on experiments and working models to introduce basic STEM concepts.",
+        topics: [
+          "Environment science",
+          "Electricity",
+          "Mechanics",
+          "Construction",
+          "Aerospace modelling",
+          "Maths",
+        ],
       },
       {
         name: "Module 2",
         activities: 24,
         duration: "36 hrs",
-        topics: ["Animal habitats", "Pollution awareness", "Recycling projects", "Garden ecosystems"],
+        description: "Intermediate level activities building upon foundational knowledge with more complex experiments.",
+        topics: [
+          "Environment science",
+          "Electricity",
+          "Mechanics",
+          "Construction",
+          "Aerospace modelling",
+          "Maths",
+        ],
       },
       {
         name: "Module 3",
         activities: 48,
         duration: "72 hrs",
-        topics: ["Climate change basics", "Biodiversity", "Conservation projects", "Green technology"],
+        description: "Advanced comprehensive program covering all topics with extensive hands-on project work.",
+        topics: [
+          "Environment science",
+          "Electricity",
+          "Mechanics",
+          "Construction",
+          "Aerospace modelling",
+          "Maths",
+        ],
       },
     ],
   },
   {
-    id: "7-9-optic-science",
-    title: "Light & Vision Magic",
-    ageGroup: "7-9 years",
-    description:
-      "Explore the fascinating world of light, colors, and vision through exciting optical experiments and creative projects.",
+    id: "10-12",
+    title: "STEM Innovator (10–12 years)",
+    ageGroup: "10–12 years",
+    description: "Hands-on experiments covering science, tech, and engineering basics.",
     modules: [
       {
         name: "Module 1",
         activities: 12,
         duration: "18 hrs",
-        topics: ["Light sources", "Shadow play", "Color mixing", "Simple mirrors"],
+        description: "Foundation level hands-on experiments introducing core STEM disciplines through practical learning.",
+        topics: [
+          "Environment science",
+          "Optic science",
+          "Electricity",
+          "Electronics",
+          "Magnetism",
+          "Mechanics",
+          "Construction",
+          "Aerospace modelling",
+          "Science laws",
+          "Maths",
+        ],
       },
       {
         name: "Module 2",
         activities: 24,
         duration: "36 hrs",
-        topics: ["Rainbow creation", "Kaleidoscope making", "Periscope building", "Lens experiments"],
+        description: "Intermediate level projects expanding knowledge with more complex experiments and working models.",
+        topics: [
+          "Environment science",
+          "Optic science",
+          "Electricity",
+          "Electronics",
+          "Magnetism",
+          "Mechanics",
+          "Construction",
+          "Aerospace modelling",
+          "Science laws",
+          "Maths",
+        ],
+      },
+      {
+        name: "Module 3",
+        activities: 48,
+        duration: "72 hrs",
+        description: "Comprehensive advanced program covering all STEM topics with extensive practical applications.",
+        topics: [
+          "Environment science",
+          "Optic science",
+          "Electricity",
+          "Electronics",
+          "Magnetism",
+          "Mechanics",
+          "Construction",
+          "Aerospace modelling",
+          "Science laws",
+          "Maths",
+        ],
       },
     ],
   },
   {
-    id: "7-9-electricity",
-    title: "Electricity Adventures",
-    ageGroup: "7-9 years",
-    description:
-      "Learn about electricity through safe, fun experiments. Build simple circuits and understand how electricity powers our world.",
+    id: "13-15",
+    title: "STEM Builder (13–15 years)",
+    ageGroup: "13–15 years",
+    description: "Dive deeper into robotics, electronics, and advanced STEM concepts.",
     modules: [
       {
         name: "Module 1",
         activities: 12,
         duration: "18 hrs",
-        topics: ["Static electricity", "Battery circuits", "Switches", "Conductors & Insulators"],
+        description: "Foundation level introduction to advanced STEM concepts with practical robotics and technology projects.",
+        topics: [
+          "Electricity",
+          "Electronics",
+          "Magnetism",
+          "Science laws",
+          "Sensors",
+          "Solar power",
+          "Electromagnetism",
+          "Hydraulics",
+          "Robotics",
+        ],
       },
       {
         name: "Module 2",
         activities: 24,
         duration: "36 hrs",
-        topics: ["Series & parallel circuits", "DIY torch", "Electromagnets", "Buzzer circuits"],
+        description: "Intermediate to advanced level projects focusing on robotics, electronics, and engineering applications.",
+        topics: [
+          "Electricity",
+          "Electronics",
+          "Magnetism",
+          "Science laws",
+          "Sensors",
+          "Solar power",
+          "Electromagnetism",
+          "Hydraulics",
+          "Robotics",
+        ],
+      },
+      {
+        name: "Module 3",
+        activities: "Custom",
+        duration: "Project based",
+        description: "Personalized project work tailored to individual interests and requirements with customized STEM challenges.",
+        topics: ["Customized projects as per requirement"],
       },
     ],
   },
-
-  // Age Group: 10-12 years
   {
-    id: "10-12-electronics",
-    title: "Electronics Workshop",
-    ageGroup: "10-12 years",
-    description:
-      "Introduction to electronics through hands-on circuit building, component understanding, and practical project creation.",
+    id: "16plus",
+    title: "STEM Advanced (16+ years, Engg/Diploma)",
+    ageGroup: "16+ years",
+    description: "Advanced customized STEM projects with engineering focus.",
     modules: [
       {
         name: "Module 1",
-        activities: 12,
-        duration: "18 hrs",
-        topics: ["Resistors & capacitors", "Breadboard basics", "LED circuits", "Simple alarms"],
-      },
-      {
-        name: "Module 2",
-        activities: 24,
-        duration: "36 hrs",
-        topics: ["Amplifiers", "Transistors", "DIY radios", "Logic gates basics"],
-      },
-    ],
-  },
-  {
-    id: "10-12-magnetism",
-    title: "Magnetism & Electromagnetism",
-    ageGroup: "10-12 years",
-    description:
-      "Discover the invisible forces of magnetism and create electromagnetic devices through engaging experiments.",
-    modules: [
-      {
-        name: "Module 1",
-        activities: 12,
-        duration: "18 hrs",
-        topics: ["Magnet properties", "Magnetic fields", "Compass making", "Electromagnets"],
-      },
-      {
-        name: "Module 2",
-        activities: 24,
-        duration: "36 hrs",
-        topics: ["Motors basics", "Generators", "Solenoids", "DIY magnetic crane"],
-      },
-    ],
-  },
-
-  // Age Group: 13-15 years
-  {
-    id: "13-15-robotics",
-    title: "Introduction to Robotics",
-    ageGroup: "13-15 years",
-    description:
-      "Build and program your first robots using sensors, motors, and basic programming concepts.",
-    modules: [
-      {
-        name: "Module 1",
-        activities: 12,
-        duration: "18 hrs",
-        topics: ["Motors & wheels", "Basic sensors", "Remote-controlled bots", "Line follower intro"],
-      },
-      {
-        name: "Module 2",
-        activities: 24,
-        duration: "36 hrs",
-        topics: ["Obstacle avoidance", "Bluetooth control", "Pick & place bot", "Mini battle bots"],
-      },
-    ],
-  },
-  {
-    id: "13-15-solar-power",
-    title: "Solar Power Engineering",
-    ageGroup: "13-15 years",
-    description:
-      "Harness the power of the sun through solar panel projects, energy storage, and renewable energy systems.",
-    modules: [
-      {
-        name: "Module 1",
-        activities: 12,
-        duration: "18 hrs",
-        topics: ["Solar panels basics", "DIY solar lamp", "Solar oven", "Energy storage"],
-      },
-      {
-        name: "Module 2",
-        activities: 24,
-        duration: "36 hrs",
-        topics: ["Solar charging station", "Hybrid systems", "Mini solar house", "Advanced renewable models"],
-      },
-    ],
-  },
-
-  // Age Group: 15-17 years
-  {
-    id: "physics-practicals-10-12",
-    title: "Physics Practicals (Class 10-12)",
-    ageGroup: "15-17 years",
-    description:
-      "Complete physics laboratory experience covering all NCERT practicals for CBSE/GHSEB/ICSE and other boards.",
-    modules: [
-      {
-        name: "Practicals",
-        activities: 0,
-        duration: "As per NCERT/Board syllabus",
-        topics: ["Mechanics experiments", "Optics experiments", "Electricity experiments", "Modern physics"],
-      },
-    ],
-  },
-
-  // Age Group: 18+
-  {
-    id: "18plus-arduino",
-    title: "Arduino Programming & Projects",
-    ageGroup: "18+ years",
-    description:
-      "Master Arduino programming with advanced sensors, IoT connectivity, and complex automation projects.",
-    modules: [
-      {
-        name: "Module 1",
-        activities: 0,
-        duration: "Customized",
-        topics: ["Arduino IDE", "Sensor integration", "IoT basics", "Automation projects"],
-      },
-    ],
-  },
-  {
-    id: "18plus-drone",
-    title: "Drone Design & Programming",
-    ageGroup: "18+ years",
-    description:
-      "Design, build, and program autonomous drones with flight control systems, cameras, and GPS navigation.",
-    modules: [
-      {
-        name: "Module 1",
-        activities: 0,
-        duration: "Customized",
-        topics: ["Drone assembly", "Flight controllers", "Camera integration", "Autonomous navigation"],
+        activities: "Custom",
+        duration: "Project based",
+        description: "Professional-level customized projects for advanced students focusing on real-world engineering applications.",
+        topics: [
+          "Electronics",
+          "Physics",
+          "Sensors",
+          "Solar power",
+          "Robotics",
+          "Arduino",
+          "Drone modelling",
+          "Electrical engineering",
+        ],
       },
     ],
   },
 ];
 
-// Helper: unique age groups
-const getAgeGroups = () => [...new Set(courses.map((c) => c.ageGroup))];
+// Function to get all unique topics for a specific age group with descriptions
+const getTopicsForAgeGroup = (ageGroup) => {
+  const course = courses.find(c => c.ageGroup === ageGroup);
+  if (!course) return [];
+  
+  const topicDescriptions = {
+    'Environment science': 'Explore ecology, sustainability, and environmental impact through hands-on experiments.',
+    'Optic science': 'Discover light properties, reflection, refraction, and optical phenomena.',
+    'Electricity': 'Learn electrical circuits, conductivity, and basic electrical principles.',
+    'Electronics': 'Build electronic circuits, work with components, and understand digital systems.',
+    'Magnetism': 'Investigate magnetic fields, electromagnets, and magnetic properties.',
+    'Mechanics': 'Study motion, forces, simple machines, and mechanical engineering principles.',
+    'Construction': 'Design and build structures, learn engineering principles and materials science.',
+    'Aerospace modelling': 'Create aircraft and rocket models, study aerodynamics and flight principles.',
+    'Science laws': 'Understand fundamental scientific principles and natural laws.',
+    'Maths': 'Apply mathematical concepts in practical STEM projects and problem-solving.',
+    'Sensors': 'Work with various sensors, data collection, and measurement technologies.',
+    'Solar power': 'Learn renewable energy, photovoltaic systems, and sustainable power generation.',
+    'Electromagnetism': 'Explore electromagnetic fields, induction, and electromagnetic applications.',
+    'Hydraulics': 'Study fluid mechanics, hydraulic systems, and water-based engineering.',
+    'Robotics': 'Build and program robots, learn automation and artificial intelligence basics.',
+    'Physics': 'Explore fundamental physics concepts through practical experiments.',
+    'Arduino': 'Program microcontrollers, create interactive projects and IoT devices.',
+    'Drone modelling': 'Design, build, and program drones, study UAV technology.',
+    'Electrical engineering': 'Advanced electrical systems, power distribution, and circuit design.',
+    'Customized projects as per requirement': 'Tailored projects based on individual interests and career goals.'
+  };
 
-export default function Courses() {
-  const [selectedAgeGroup, setSelectedAgeGroup] = useState("All");
+  const uniqueTopics = new Set();
+  course.modules.forEach(module => {
+    module.topics.forEach(topic => uniqueTopics.add(topic));
+  });
 
-  const ageGroups = getAgeGroups();
+  return Array.from(uniqueTopics).map(topic => ({
+    name: topic,
+    description: topicDescriptions[topic] || 'Hands-on learning experience in this STEM topic.'
+  }));
+};
 
-  const filteredCourses =
-    selectedAgeGroup === "All"
-      ? courses
-      : courses.filter((c) => c.ageGroup === selectedAgeGroup);
+// Module card component
+const ModuleCard = ({ module, index }) => {
+  const moduleColors = [
+    'from-blue-500 to-blue-600',
+    'from-green-500 to-green-600', 
+    'from-purple-500 to-purple-600'
+  ];
 
   return (
-    <div className="min-h-screen bg-[#FFFDEB] text-gray-800 px-6 py-10">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <h1 className="text-4xl font-bold text-center text-[#007FFF] mb-4">
-          Explore Our STEM Courses
-        </h1>
-        <p className="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
-          Hands-on experiments and DIY projects designed to develop creativity,
-          critical thinking, and problem-solving skills across all age groups
-        </p>
+    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 h-full">
+      <div className="flex items-center justify-between mb-4">
+        <div className={`p-2 rounded-lg bg-gradient-to-br ${moduleColors[index % moduleColors.length]}`}>
+          <Target className="text-white" size={20} />
+        </div>
+        <span className="text-sm text-gray-500 font-medium">Level {index + 1}</span>
+      </div>
+      
+      <h3 className="text-xl font-bold text-gray-800 mb-2">
+        {module.name}
+      </h3>
+      
+      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+        {module.description}
+      </p>
+      
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center space-x-2 text-gray-600">
+          <BookOpen size={16} className="text-blue-500" />
+          <span className="text-sm font-semibold">{module.activities} Activities</span>
+        </div>
+        <div className="flex items-center space-x-2 text-gray-600">
+          <Clock size={16} className="text-green-500" />
+          <span className="text-sm font-semibold">{module.duration}</span>
+        </div>
+      </div>
+      
+      <div className="text-sm text-gray-500">
+        <span className="font-medium">{module.topics.length} Topics Included</span>
+      </div>
+    </div>
+  );
+};
 
-        {/* 🔹 Age Group Filter */}
-        <div className="bg-white rounded-2xl shadow-md p-6 mb-10">
-          <label className="block text-sm font-semibold text-gray-700 mb-3">
-            Filter by Age Group
-          </label>
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedAgeGroup("All")}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedAgeGroup === "All"
-                  ? "bg-[#007FFF] text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              All Ages
-            </button>
-            {ageGroups.map((ageGroup) => (
+// Topic card component
+const TopicCard = ({ topic }) => {
+  const topicIcons = {
+    'Environment science': '🌿',
+    'Optic science': '🔬',
+    'Electricity': '⚡',
+    'Electronics': '🔌',
+    'Magnetism': '🧲',
+    'Mechanics': '⚙️',
+    'Construction': '🏗️',
+    'Aerospace modelling': '🚀',
+    'Science laws': '📐',
+    'Maths': '🔢',
+    'Sensors': '📡',
+    'Solar power': '☀️',
+    'Electromagnetism': '🌐',
+    'Hydraulics': '💧',
+    'Robotics': '🤖',
+    'Physics': '🔬',
+    'Arduino': '💻',
+    'Drone modelling': '🚁',
+    'Electrical engineering': '⚡',
+    'Customized projects as per requirement': '🛠️'
+  };
+
+  return (
+    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 h-full">
+      <div className="flex items-start space-x-3">
+        <span className="text-2xl flex-shrink-0">{topicIcons[topic.name] || '📚'}</span>
+        <div className="flex-1">
+          <h4 className="font-semibold text-gray-800 mb-2">{topic.name}</h4>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            {topic.description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function Courses() {
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState("7–9 years");
+
+  const ageGroups = [...new Set(courses.map((c) => c.ageGroup))];
+  const selectedCourse = courses.find(c => c.ageGroup === selectedAgeGroup);
+  const topics = getTopicsForAgeGroup(selectedAgeGroup);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#FFFDEB] via-white to-[#F0F8FF] px-6 py-10">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+            STEM Learning Hub
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Discover hands-on learning experiences tailored for every age group
+          </p>
+        </div>
+
+        {/* Age Groups Filter - Horizontal Layout */}
+        <div className="mb-12">
+          <h2 className="text-lg font-bold text-gray-800 mb-4">Age groups</h2>
+          <div className="grid grid-cols-4 gap-4">
+            {ageGroups.map((age) => (
               <button
-                key={ageGroup}
-                onClick={() => setSelectedAgeGroup(ageGroup)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedAgeGroup === ageGroup
-                    ? "bg-[#007FFF] text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                key={age}
+                onClick={() => setSelectedAgeGroup(age)}
+                className={`p-4 rounded-lg border-2 font-semibold transition-all duration-200 ${
+                  selectedAgeGroup === age
+                    ? "border-blue-500 bg-blue-50 text-blue-700"
+                    : "border-gray-300 bg-white text-gray-700 hover:border-gray-400"
                 }`}
               >
-                {ageGroup}
+                {age}
               </button>
             ))}
           </div>
         </div>
 
-        {/* 🔹 Courses by Age Group */}
-        <div className="space-y-12">
-          {filteredCourses.map((course) => (
-            <div
-              key={course.id}
-              className="bg-white rounded-2xl shadow-md p-6"
-            >
-              <h2 className="text-2xl font-bold text-[#007FFF] mb-2">
-                {course.title}
-              </h2>
-              <p className="text-gray-600 mb-4">{course.description}</p>
+        {/* Selected Course Info */}
+        {selectedCourse && (
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              {selectedCourse.title}
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              {selectedCourse.description}
+            </p>
+          </div>
+        )}
 
-              {/* Modules */}
-              <div className="space-y-6">
-                {course.modules.map((module, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-gradient-to-r from-blue-50 to-yellow-50 rounded-xl p-4 shadow"
-                  >
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                      {module.name} — {module.activities} Activities | {module.duration}
-                    </h3>
-                    <ul className="list-disc list-inside text-gray-700 space-y-1">
-                      {module.topics.map((topic, tIdx) => (
-                        <li key={tIdx}>{topic}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* Modules Section */}
+        <div className="mb-16">
+          <h3 className="text-lg font-bold text-gray-800 mb-6">Modules</h3>
+          <div className="grid grid-cols-3 gap-6">
+            {selectedCourse?.modules.map((module, idx) => (
+              <ModuleCard 
+                key={`module-${idx}`}
+                module={module}
+                index={idx}
+              />
+            ))}
+          </div>
+        </div>
 
-          {/* No courses */}
-          {filteredCourses.length === 0 && (
-            <div className="text-center py-12">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                No courses found
-              </h3>
-              <p className="text-gray-500">
-                Try selecting another age group
-              </p>
+        {/* Topics Section */}
+        <div className="mb-16">
+          <h3 className="text-lg font-bold text-gray-800 mb-2">Topics to be covered in modules</h3>
+          <div className="grid grid-cols-3 gap-4">
+            {topics.slice(0, 6).map((topic, idx) => (
+              <TopicCard 
+                key={`topic-${idx}`}
+                topic={topic}
+              />
+            ))}
+          </div>
+          {topics.length > 6 && (
+            <div className="grid grid-cols-3 gap-4 mt-4">
+              {topics.slice(6, 12).map((topic, idx) => (
+                <TopicCard 
+                  key={`topic-${idx + 6}`}
+                  topic={topic}
+                />
+              ))}
             </div>
           )}
         </div>
