@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -15,8 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Atlas Connection
-const MONGODB_URI = 'mongodb+srv://dhritisojitra25_db_user:uTXvfiKTYzIVwUl4@cluster0.gc1iw7q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-
+const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('MongoDB Atlas connected!'))
   .catch(err => console.error(err));
@@ -36,9 +36,10 @@ const upload = multer({ storage: storage });
 // Serve Static Uploads
 app.use('/uploads', express.static('uploads'));
 
-// API Routes
+// Auth Routes (register, login, etc.)
 app.use('/api/auth', authRouter);
 
+// Public courses route
 app.get('/api/courses', async (req, res) => {
     try {
         const courses = await Course.find();
@@ -48,6 +49,7 @@ app.get('/api/courses', async (req, res) => {
     }
 });
 
+// Protected course creation route
 app.post('/api/courses', authMiddleware, upload.single('image'), async (req, res) => {
     try {
         if (!req.file) {
