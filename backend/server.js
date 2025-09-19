@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const Course = require('./models/Course');
 const authRouter = require('./auth/authRouter');
 const authMiddleware = require('./middleware/userAuth');
+const contactRoutes = require('./contactController'); 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,10 +24,7 @@ mongoose.connect(MONGODB_URI)
 
 app.use('/api/auth', authRouter);
 
-
-
-
-
+app.use('/api/contact', contactRoutes);
 /*
 app.get('/api/courses', async (req, res) => {
     try {

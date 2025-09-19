@@ -1,58 +1,60 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginPage = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({ username: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(null);
   const [focusedField, setFocusedField] = useState('');
 
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.email || !formData.password) {
-      alert('Please fill in all fields');
+    setMessage(null);
+
+    if (!formData.username || !formData.password) {
+      setMessage({ type: 'error', text: 'Please fill in all fields.' });
       return;
     }
-    
+
     setIsLoading(true);
-    
-    // Simulate login process
-    setTimeout(() => {
+
+    try {
+      const response = await axios.post("http://localhost:3000/api/auth/login", formData, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      console.log("Login response:", response.data);
+
+      const { token } = response.data;
+      localStorage.setItem("token", token);
+
+      setMessage({ type: 'success', text: 'Login successful 🚀' });
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Login error:", error);
+      const errorMessage = error.response?.data?.message || error.message || "An unknown error occurred.";
+      setMessage({ type: 'error', text: errorMessage });
+    } finally {
       setIsLoading(false);
-      alert('Welcome to UDDYAN DIY & STEM Lab! 🚀');
-    }, 2000);
-  };
-
-  const handleForgotPassword = () => {
-    alert('Password reset instructions would be sent to your email!');
-  };
-
-  const handleSignup = () => {
-    alert('Redirecting to signup page...');
+    }
   };
 
   return (
-    <div className="min-h-screen bg-[#D0EBFF] flex items-center justify-center p-4 relative overflow-hidden">
-
-      {/* Main login container */}
+    <div className="min-h-screen bg-[#D0EBFF] font-sans flex items-center justify-center p-4 relative overflow-hidden">
       <div className="relative bg-[#FFFFF0] bg-opacity-95 backdrop-blur-sm p-8 rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-500 hover:scale-105">
-        {/* Logo and branding section */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg transform transition-transform duration-300 hover:rotate-12">
-            <img 
-                src="/uddyanLogo.jpeg" 
-                alt="UDDYAN Logo" 
-                className="w-12 h-12 object-contain" 
+            <img
+              src="/uddyanLogo.jpeg"
+              alt="UDDYAN Logo"
+              className="w-12 h-12 object-contain"
             />
           </div>
           <h1 className="text-3xl font-bold text-blue-600 mb-2 tracking-tight">UDDYAN</h1>
@@ -61,28 +63,33 @@ const LoginPage = () => {
           </p>
         </div>
 
-        {/* Login form */}
+        {message && (
+          <div className={`p-4 mb-4 rounded-xl text-center transition-all duration-300 ease-in-out ${
+            message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+          }`}>
+            {message.text}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Email field */}
-          <div className={`transform transition-transform duration-300 ${focusedField === 'email' ? '-translate-y-1' : ''}`}>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-              Email Address
+          <div className={`transform transition-transform duration-300 ${focusedField === 'username' ? '-translate-y-1' : ''}`}>
+            <label htmlFor="username" className="block text-sm font-semibold text-gray-700 mb-2">
+              Username
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleInputChange}
-              onFocus={() => setFocusedField('email')}
+              onFocus={() => setFocusedField('username')}
               onBlur={() => setFocusedField('')}
               className="w-full px-4 py-3 bg-gray-50 border-2 border-blue-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-300 hover:border-blue-300"
-              placeholder="Enter your email"
+              placeholder="Enter your username"
               required
             />
           </div>
 
-          {/* Password field */}
           <div className={`transform transition-transform duration-300 ${focusedField === 'password' ? '-translate-y-1' : ''}`}>
             <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
               Password
@@ -101,7 +108,6 @@ const LoginPage = () => {
             />
           </div>
 
-          {/* Submit button */}
           <button
             type="submit"
             disabled={isLoading}
@@ -124,18 +130,8 @@ const LoginPage = () => {
             </span>
           </button>
         </form>
-
-        {/* Forgot password link */}
-        <div className="text-center mt-6">
-          <button
-            onClick={handleForgotPassword}
-            className="text-blue-600 hover:text-yellow-500 text-sm font-medium transition-colors duration-300 hover:underline"
-          >
-            Forgot your password?
-          </button>
-        </div>
+      </div>
     </div>
-</div>
   );
 };
 
