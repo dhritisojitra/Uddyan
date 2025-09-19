@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Gallery from "../src/pages/gallery"
 import AboutUs from "./pages/aboutUs";
 import ContactUs from "./pages/ContactUs";
+import LoginPage from "./pages/Auth";
 
 function App() {
   return (
@@ -32,9 +33,6 @@ function App() {
         {/* Courses listing */}
         <Route path="/CoursesPage" element={<CoursesPage />} />
 
-        {/* Individual course page */}
-        <Route path="/courses/:id" element={<CourseDetail />} />
-
         {/* Gallery page */}
         <Route path="/gallery" element={<Gallery />} /> 
 
@@ -44,7 +42,8 @@ function App() {
         {/* Contact Us page */}
         <Route path="/contact" element={<ContactUs />} /> 
 
-        <Route path="/courses/:id" element={<CourseDetail />} />
+        {/* Login page */}
+        <Route path="/signin" element={<LoginPage />} />
       </Routes>
     </Router>
   );
