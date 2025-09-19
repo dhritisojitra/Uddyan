@@ -23,6 +23,11 @@ mongoose.connect(MONGODB_URI)
 
 app.use('/api/auth', authRouter);
 
+
+
+
+
+/*
 app.get('/api/courses', async (req, res) => {
     try {
         const courses = await Course.find();
@@ -31,7 +36,7 @@ app.get('/api/courses', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
-
+*/
 
 
 // Start Server

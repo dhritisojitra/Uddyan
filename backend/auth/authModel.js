@@ -13,16 +13,7 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-
-UserSchema.pre('save', async function (next) {
-    if (this.isModified('password')) {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-    }
-    next();
-});
-
-// Method to compare the password with the stored hash
+// Compare plaintext password with hashed password in DB
 UserSchema.methods.comparePassword = function (candidatePassword) {
     return bcrypt.compare(candidatePassword, this.password);
 };
