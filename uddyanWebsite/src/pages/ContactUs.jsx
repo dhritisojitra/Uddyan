@@ -81,9 +81,9 @@ export default function ContactUs() {
 
           {/* Static Hardcoded Working Hours */}
           <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-yellow-100 transition-all duration-300 hover:translate-x-2 hover:shadow-md group animate-slide-in-left">
-            <Clock className="w-6 h-6 text-purple-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12" />
+            <Clock className="w-6 h-6 text-[#007FFF] flex-shrink-0 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12" />
             <div>
-              <h2 className="font-semibold text-lg group-hover:text-purple-600 transition-colors duration-300">
+              <h2 className="font-semibold text-lg group-hover:text-[#007FFF] transition-colors duration-300">
                 Working Hours
               </h2>
               <p className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
