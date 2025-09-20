@@ -1,22 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Camera, Save, User, Mail, Phone, MapPin, Edit3 } from "lucide-react";
+import { Camera, Save, User, Mail, Phone, MapPin, Edit3, LogOut } from "lucide-react";
+import { AppContent } from "../context/AppContext"; // adjust path
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const { isLoggedIn, userData, setIsLoggedIn } = useContext(AppContent); // added setter for logout
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const navigate = useNavigate();
+
   const [contactData, setContactData] = useState({
     email: "",
     phone: "",
     address: ""
   });
   const [isEditing, setIsEditing] = useState(false);
-
   const [images, setImages] = useState([]);
   const [newImage, setNewImage] = useState(null);
 
   // Fetch contact info from backend on mount
   useEffect(() => {
-    axios.get("http://localhost:3000/api/contact")
-      .then(res => {
+    if (!isLoggedIn) return; // skip fetching if not logged in
+
+    axios
+      .get(`${backendURL}/api/contact`, { withCredentials: true })
+      .then((res) => {
         if (res.data) {
           setContactData({
             email: res.data.email || "",
@@ -25,20 +33,24 @@ const Dashboard = () => {
           });
         }
       })
-      .catch(err => console.error(err));
-  }, []);
+      .catch((err) => console.error(err));
+  }, [isLoggedIn]);
 
   const handleContactChange = (field, value) => {
-    setContactData(prev => ({ ...prev, [field]: value }));
+    setContactData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSaveContact = async () => {
     try {
-      await axios.put("http://localhost:3000/api/contact", {
-        email: contactData.email,
-        contact: contactData.phone,
-        address: contactData.address
-      });
+      await axios.put(
+        `${backendURL}/api/contact`,
+        {
+          email: contactData.email,
+          contact: contactData.phone,
+          address: contactData.address
+        },
+        { withCredentials: true }
+      );
       setIsEditing(false);
       alert("Contact info updated successfully! 🚀");
     } catch (err) {
@@ -58,14 +70,41 @@ const Dashboard = () => {
   };
   const handleAddImage = () => {
     if (newImage) {
-      setImages(prev => [...prev, newImage]);
+      setImages((prev) => [...prev, newImage]);
       setNewImage(null);
     }
   };
 
+  // Logout function
+  const handleLogout = async () => {
+    try {
+      await axios.post(`${backendURL}/api/auth/logout`, {}, { withCredentials: true });
+      setIsLoggedIn(false); // update context
+      navigate("/"); // redirect to homepage
+    } catch (err) {
+      console.error("Logout failed:", err);
+      alert("Logout failed. Try again.");
+    }
+  };
+
+  // Render nothing if not logged in
+  if (!isLoggedIn) return null;
+
   return (
     <div className="min-h-screen bg-[#FFFFF0] p-6 space-y-10">
-      <h1 className="text-3xl font-bold text-center">Admin Dashboard</h1>
+      {/* Personalized heading using username */}
+      <div className="flex items-center justify-between max-w-2xl mx-auto">
+        <h1 className="text-3xl font-bold text-gray-900">
+          Hello, {userData?.username || "User"}!
+        </h1>
+        <button
+          onClick={handleLogout}
+          className="flex items-center space-x-2 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+        >
+          <LogOut size={16} />
+          <span>Logout</span>
+        </button>
+      </div>
 
       {/* Contact Info */}
       <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 max-w-2xl mx-auto space-y-4">
@@ -81,10 +120,6 @@ const Dashboard = () => {
         </div>
 
         <div className="space-y-3">
-          <div className="flex items-center space-x-3">
-            
-          </div>
-
           <div className="flex items-center space-x-3">
             <Mail className="text-blue-500" size={20} />
             {isEditing ? (
@@ -139,7 +174,7 @@ const Dashboard = () => {
         )}
       </div>
 
-      {/* Gallery section stays the same */}
+      {/* Gallery section (images) remains unchanged */}
     </div>
   );
 };

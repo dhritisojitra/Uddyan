@@ -1,25 +1,24 @@
 const jwt = require("jsonwebtoken");
 
-const userAuth = async(req,res, next)=>{
+ const userAuth = async (req, res, next) => {
+  const token = req.cookies.token; // cookie-parser makes this available
 
-    
-    const {token} = req.cookies;
+  if (!token) {
+    return res.status(401).json({ success: false, message: "Not authorized. Login again" });
+  }
 
-    if(!token){
-        return res.json({success:false, message:"Not authorized. Login again"})
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (decoded.user && decoded.user.id) {
+      req.userId = decoded.user.id; // cleaner than modifying req.body
+      return next();
+    } else {
+      return res.status(401).json({ success: false, message: "Not authorized. Login again" });
     }
-
-    try{
-        const tokenDecode = jwt.verify(token,process.env.JWT_SECRET);
-        if(tokenDecode.id){
-            req.body.userID = tokenDecode.id
-        }
-        else{
-            return res.json({success:false, message:"Not authorized. Login again"})
-        }
-        next()
-    }catch(err){
-        res.json({success:false, message:err.message})
-    }
-}
+  } catch (err) {
+    return res.status(403).json({ success: false, message: "Invalid or expired token" });
+  }
+};
 module.exports = userAuth;
+

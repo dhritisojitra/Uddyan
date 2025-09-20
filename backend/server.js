@@ -2,18 +2,21 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const cookieParser = require("cookie-parser");
 
-const Course = require('./models/Course');
 const authRouter = require('./auth/authRouter');
-const authMiddleware = require('./middleware/userAuth');
 const contactRoutes = require('./contactController'); 
-
+const middlewareRouter  = require('./middleware/middlewareRouter');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173", // your Vite frontend
+  credentials: true,              // allow cookies to be sent
+}));
 app.use(express.json());
+app.use(cookieParser());
 
 // MongoDB Atlas Connection
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -21,10 +24,16 @@ mongoose.connect(MONGODB_URI)
   .then(() => console.log('MongoDB Atlas connected!'))
   .catch(err => console.error(err));
 
-
+//for login logout
 app.use('/api/auth', authRouter);
 
+//for editing contacts
 app.use('/api/contact', contactRoutes);
+
+//for context
+app.use('/api/user', middlewareRouter);
+
+
 /*
 app.get('/api/courses', async (req, res) => {
     try {
