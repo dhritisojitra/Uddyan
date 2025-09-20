@@ -11,7 +11,7 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className="bg-[#FFFDEB] min-h-screen py-12 px-2">
+    <div className="bg-[#FFFDEB] min-h-screen py-10 px-2">
       <h1
         className={`text-4xl font-bold text-center text-[#007FFF] mb-10 transition-all duration-1000 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"

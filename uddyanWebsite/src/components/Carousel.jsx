@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import img1 from "../assets/img1.jpeg";
+import { ChevronLeft, ChevronRight, Users, BookOpen } from "lucide-react";
+import img1 from '../assets/img1.jpeg';
+import img2 from '../assets/img2.jpeg';
+import img3 from '../assets/img3.jpeg';
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -12,32 +14,63 @@ export default function Carousel() {
       id: 1, 
       img: img1, 
       title: "Fun Learning",
-      description: `STEM education is all about Learning by Doing not by memorizing. 
-      It includes four major disciplines - Science, Technology, Engineering and Mathematics. 
-      These four disciplines are the main driving force of global economy and help maintain well-being of the society at large. 
-      STEM learning is all about Experimenting. This helps children to find alternative solutions to their problems.`,
+      description: (
+        <>
+          STEM education is all about{" "}
+          <span className="font-semibold text-[#007FFF]">Learning by Doing</span>, not memorizing.  
+          It includes four major disciplines –{" "}
+          <span className="font-semibold text-[#FFD700]">Science, Technology, Engineering, and Mathematics</span>.  
+          These are the <span className="font-semibold text-[#007FFF]">driving forces of the global economy</span>  
+          and help maintain the well-being of society.  
+          STEM learning focuses on <span className="font-semibold text-[#FFD700]">experimenting and problem-solving</span>.
+        </>
+      ),
       color: "from-blue-500 to-purple-600"
     },
     { 
       id: 2, 
-      img: img1, 
+      img: img2, 
       title: "Explore Science",
-      description: `Performing STEM learning activities together in a group promotes team spirit. 
-      Children learn to apply the STEM skills to solve real world problems and challenges. 
-      There is no stipulated age or time to start the basics of STEM that means it is never too early or too late to start teaching your child.`,
+      description: (
+        <>
+          Performing STEM activities in groups promotes{" "}
+          <span className="font-semibold text-[#007FFF]">teamwork</span> and{" "}
+          <span className="font-semibold text-[#FFD700]">collaboration</span>.  
+          Children learn to apply STEM skills to <span className="font-semibold text-[#007FFF]">real-world challenges</span>.  
+          It’s never too early or too late to start <span className="font-semibold text-[#FFD700]">STEM education</span>.
+        </>
+      ),
       color: "from-green-500 to-teal-600"
     },
     { 
       id: 3, 
-      img: img1, 
+      img: img3, 
       title: "Creative Innovation",
-      description: `The skill-set shortage is critical to the employability and our economy. 
-      Investing in STEM education early for children is no more a luxury today but a necessity. 
-      The only use of technology is insufficient to fill the STEM skill-set gap. 
-      We need our children to learn hands-on and be more interactive by blending the STEM activities in their education early on. 
-      Exposure to STEM activities develop logical reasoning, critical thinking, problem solving, creativity, innovation, inquiry, collaboration and many others skills in children. 
-      The main purpose of STEM education is to inculcate innovation and entrepreneurship qualities.`,
+      description: (
+        <>
+          Early STEM exposure builds <span className="font-semibold text-[#007FFF]">logical reasoning</span>,{" "}
+          <span className="font-semibold text-[#FFD700]">critical thinking</span>, and{" "}
+          <span className="font-semibold text-[#007FFF]">innovation skills</span>.  
+          The goal of STEM is to instill{" "}
+          <span className="font-semibold text-[#FFD700]">entrepreneurship and creativity</span> in children for the future.
+        </>
+      ),
       color: "from-orange-500 to-red-600"
+    }
+  ];
+
+  const stats = [
+    {
+      icon: Users,
+      number: "1000+",
+      label: "Students Taught",
+      color: "text-blue-600"
+    },
+    {
+      icon: BookOpen,
+      number: "500+",
+      label: "Projects Completed",
+      color: "text-green-600"
     }
   ];
 
@@ -60,6 +93,7 @@ export default function Carousel() {
   return (
     <div className="bg-[#D0EBFF] py-16 px-6">
       <div className="max-w-6xl mx-auto">
+        
         {/* Header */}
         <div className={`text-center mb-12 transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <h2 className="text-4xl font-bold text-[#007FFF] mb-4">
@@ -70,7 +104,7 @@ export default function Carousel() {
           </p>
         </div>
 
-        {/* Main Carousel */}
+        {/* Carousel */}
         <div className={`relative overflow-hidden rounded-3xl shadow-2xl bg-white transition-all duration-1000 delay-300 ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
           <div className="relative h-[600px] overflow-hidden">
             {slides.map((slide, index) => (
@@ -85,6 +119,7 @@ export default function Carousel() {
                 }`}
               >
                 <div className="grid md:grid-cols-2 h-full">
+                  
                   {/* Image Section */}
                   <div className="relative overflow-hidden">
                     <img
@@ -111,7 +146,7 @@ export default function Carousel() {
             ))}
           </div>
 
-          {/* Navigation */}
+          {/* Navigation Buttons */}
           <button onClick={prevSlide} className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/90 shadow-lg rounded-full p-3 z-10">
             <ChevronLeft className="w-6 h-6 text-gray-700" />
           </button>
@@ -134,6 +169,20 @@ export default function Carousel() {
             />
           ))}
         </div>
+
+        {/* Stats Section */}
+        <div className={`grid grid-cols-2 md:grid-cols-2 gap-6 mb-12 pt-6 transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          {stats.map((stat, index) => (
+            <div key={index} className="bg-white rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="inline-flex items-center justify-center w-10 h-12 rounded-full bg-gray-50 mb-4">
+                <stat.icon className={`w-6 h-6 ${stat.color}`} />
+              </div>
+              <div className="text-2xl font-bold text-gray-800 mb-2">{stat.number}</div>
+              <div className="text-gray-600 font-medium">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </div>
   );

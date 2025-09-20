@@ -13,7 +13,7 @@ const courses = [
         name: "Module 1",
         activities: 12,
         duration: "18 hrs",
-        description: "Foundation level hands-on experiments and working models to introduce basic STEM concepts.",
+        description: "",
         topics: [
           "Environment science",
           "Electricity",
@@ -27,7 +27,7 @@ const courses = [
         name: "Module 2",
         activities: 24,
         duration: "36 hrs",
-        description: "Intermediate level activities building upon foundational knowledge with more complex experiments.",
+        description: "",
         topics: [
           "Environment science",
           "Electricity",
@@ -41,7 +41,7 @@ const courses = [
         name: "Module 3",
         activities: 48,
         duration: "72 hrs",
-        description: "Advanced comprehensive program covering all topics with extensive hands-on project work.",
+        description: "",
         topics: [
           "Environment science",
           "Electricity",
@@ -63,7 +63,7 @@ const courses = [
         name: "Module 1",
         activities: 12,
         duration: "18 hrs",
-        description: "Foundation level hands-on experiments introducing core STEM disciplines through practical learning.",
+        description: "",
         topics: [
           "Environment science",
           "Optic science",
@@ -81,7 +81,7 @@ const courses = [
         name: "Module 2",
         activities: 24,
         duration: "36 hrs",
-        description: "Intermediate level projects expanding knowledge with more complex experiments and working models.",
+        description: "",
         topics: [
           "Environment science",
           "Optic science",
@@ -99,7 +99,7 @@ const courses = [
         name: "Module 3",
         activities: 48,
         duration: "72 hrs",
-        description: "Comprehensive advanced program covering all STEM topics with extensive practical applications.",
+        description: "",
         topics: [
           "Environment science",
           "Optic science",
@@ -125,7 +125,7 @@ const courses = [
         name: "Module 1",
         activities: 12,
         duration: "18 hrs",
-        description: "Foundation level introduction to advanced STEM concepts with practical robotics and technology projects.",
+        description: "",
         topics: [
           "Electricity",
           "Electronics",
@@ -142,7 +142,7 @@ const courses = [
         name: "Module 2",
         activities: 24,
         duration: "36 hrs",
-        description: "Intermediate to advanced level projects focusing on robotics, electronics, and engineering applications.",
+        description: "",
         topics: [
           "Electricity",
           "Electronics",
@@ -159,7 +159,7 @@ const courses = [
         name: "Module 3",
         activities: "Custom",
         duration: "Project based",
-        description: "Personalized project work tailored to individual interests and requirements with customized STEM challenges.",
+        description: "",
         topics: ["Customized projects as per requirement"],
       },
     ],
@@ -257,11 +257,11 @@ const ModuleCard = ({ module, index }) => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-2 text-gray-600">
           <BookOpen size={16} className="text-blue-500" />
-          <span className="text-sm font-semibold">{module.activities} Activities</span>
+          <span className="text-m font-semibold">{module.activities} Activities</span>
         </div>
         <div className="flex items-center space-x-2 text-gray-600">
           <Clock size={16} className="text-green-500" />
-          <span className="text-sm font-semibold">{module.duration}</span>
+          <span className="text-l font-semibold">{module.duration}</span>
         </div>
       </div>
       
@@ -303,7 +303,7 @@ const TopicCard = ({ topic }) => {
         <span className="text-2xl flex-shrink-0">{topicIcons[topic.name] || '📚'}</span>
         <div className="flex-1">
           <h4 className="font-semibold text-gray-800 mb-2">{topic.name}</h4>
-          <p className="text-sm text-gray-600 leading-relaxed">
+          <p className="text-m text-gray-600 leading-relaxed">
             {topic.description}
           </p>
         </div>
@@ -320,7 +320,7 @@ export default function Courses() {
   const topics = getTopicsForAgeGroup(selectedAgeGroup);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFFDEB] via-white to-[#F0F8FF] px-6 py-10">
+    <div className="min-h-screen bg-[#FFFFF0] px-6 py-10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

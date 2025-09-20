@@ -25,7 +25,7 @@ function App() {
               <HeroSection />
               <Carousel />
               <Cards />
-              <Footer/>
+            
             </>
           }
         />
@@ -48,6 +48,7 @@ function App() {
         {/* Dashboard page*/}
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
+      <Footer/>
     </Router>
   );
 }

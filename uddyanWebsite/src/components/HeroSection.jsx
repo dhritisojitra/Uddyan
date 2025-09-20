@@ -50,7 +50,7 @@ const HeroSection = () => {
           <img
             src={img4}
             alt="STEM Lab"
-            className="rounded-2xl shadow-lg w-full max-w-md md:max-w-lg object-cover"
+            className="rounded-2xl shadow-lg w-full max-w-xl md:max-w-2xl object-cover"
           />
         </div>
       </div>

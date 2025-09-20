@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-[#007FFF] px-6 py-4 shadow-md">
+    <nav className="bg-[#007FFF] px-10 py-6 shadow-md">
       <div className="flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center space-x-2">
@@ -31,7 +31,7 @@ const Navbar = () => {
 
         {/* Menu Section */}
         <ul
-          className={`flex-col md:flex-row md:flex md:space-x-14 text-[#FFD700] font-semibold text-lg absolute md:static bg-[#007FFF] md:bg-transparent left-0 w-full md:w-auto transition-all duration-300 ease-in-out md:translate-y-0 p-4 md:p-0 shadow-md md:shadow-none z-20 ${
+          className={`flex-col md:flex-row md:flex md:space-x-14 text-[#FFD700] font-semibold text-xl absolute md:static bg-[#007FFF] md:bg-transparent left-0 w-full md:w-auto transition-all duration-300 ease-in-out md:translate-y-0 p-4 md:p-0 shadow-md md:shadow-none z-20 ${
             isOpen ? "top-16 flex" : "top-[-500px] hidden md:flex"
           }`}
         >

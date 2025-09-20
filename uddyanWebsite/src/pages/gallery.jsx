@@ -17,7 +17,7 @@ const Gallery = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        
+    
         const backendURL = import.meta.env.VITE_BACKEND_URL;
         const res = await axios.get(`${backendURL}/api/uploads/all`, {
           withCredentials: true,
