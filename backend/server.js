@@ -38,6 +38,8 @@ app.use('/api/images', uplaodRouter);
 
 app.use('/api/uploads', fetchImagesRouter);
 
+app.use('')
+
 /*
 app.get('/api/courses', async (req, res) => {
     try {
