@@ -9,7 +9,8 @@ const contactRoutes = require('./contactController');
 const middlewareRouter  = require('./middleware/middlewareRouter');
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+const uplaodRouter = require('./Images/upload');
+const fetchImagesRouter = require('./Images/FetchImages');
 
 app.use(cors({
   origin: "http://localhost:5173", // your Vite frontend
@@ -33,6 +34,9 @@ app.use('/api/contact', contactRoutes);
 //for context
 app.use('/api/user', middlewareRouter);
 
+app.use('/api/images', uplaodRouter);
+
+app.use('/api/uploads', fetchImagesRouter);
 
 /*
 app.get('/api/courses', async (req, res) => {
