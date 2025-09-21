@@ -23,8 +23,6 @@ const Gallery = () => {
           withCredentials: true,
         });
 
-        console.log("Fetched images:", res.data);
-
         // Map backend images to { src, alt } format expected in your gallery
         const fetchedImages = res.data.map((img, index) => ({
           src: img.url,
