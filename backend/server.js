@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 
 const authRouter = require('./auth/authRouter');
 const contactRoutes = require('./contactController'); 
@@ -18,6 +20,15 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(helmet());
+
+// ✅ Rate limiting (esp. for login/register routes)
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // max requests per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // MongoDB Atlas Connection
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -27,6 +38,7 @@ mongoose.connect(MONGODB_URI)
 
 //for login logout
 app.use('/api/auth', authRouter);
+app.use("/api/auth", limiter);
 
 //for editing contacts
 app.use('/api/contact', contactRoutes);
@@ -37,20 +49,6 @@ app.use('/api/user', middlewareRouter);
 app.use('/api/images', uplaodRouter);
 
 app.use('/api/uploads', fetchImagesRouter);
-
-app.use('')
-
-/*
-app.get('/api/courses', async (req, res) => {
-    try {
-        const courses = await Course.find();
-        res.status(200).json(courses);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-*/
-
 
 // Start Server
 app.listen(PORT, () => {

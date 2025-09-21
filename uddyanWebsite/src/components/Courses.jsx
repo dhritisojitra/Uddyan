@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp, Clock, BookOpen, Target, Users } from "lucide-react";
 
-// Course data extracted from .docx
+// Course data
 const courses = [
   {
     id: "7-9",
@@ -206,7 +206,7 @@ const courses = [
   },
 ];
 
-// Function to get all unique topics for a specific age group with descriptions
+// Function to get unique topics for a course
 const getTopicsForAgeGroup = (ageGroup) => {
   const course = courses.find((c) => c.ageGroup === ageGroup);
   if (!course) return [];
@@ -258,33 +258,33 @@ const ModuleCard = ({ module, index }) => {
   ];
 
   return (
-    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 h-full">
-      <div className="flex items-center justify-between mb-4">
-        <div
-          className={`p-2 rounded-lg bg-gradient-to-br ${moduleColors[index % moduleColors.length]}`}
-        >
-          <Target className="text-white" size={20} />
+    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 h-full flex flex-col justify-between">
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <div className={`p-2 rounded-lg bg-gradient-to-br ${moduleColors[index % moduleColors.length]}`}>
+            <Target className="text-white" size={20} />
+          </div>
+          <span className="text-sm text-gray-500 font-medium">Level {index + 1}</span>
         </div>
-        <span className="text-sm text-gray-500 font-medium">Level {index + 1}</span>
+        
+        <h3 className="text-xl font-bold text-gray-800 mb-2">{module.name}</h3>
+        <p className="text-gray-600 text-sm mb-4 leading-relaxed">{module.description}</p>
       </div>
-
-      <h3 className="text-xl font-bold text-gray-800 mb-2">{module.name}</h3>
-
-      <p className="text-gray-600 text-sm mb-4 leading-relaxed">{module.description}</p>
-
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-2 text-gray-600">
-          <BookOpen size={16} className="text-blue-500" />
-          <span className="text-m font-semibold">{module.activities} Activities</span>
+      
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-2 text-gray-600">
+            <BookOpen size={16} className="text-blue-500" />
+            <span className="text-m font-semibold">{module.activities} Activities</span>
+          </div>
+          <div className="flex items-center space-x-2 text-gray-600">
+            <Clock size={16} className="text-green-500" />
+            <span className="text-l font-semibold">{module.duration}</span>
+          </div>
         </div>
-        <div className="flex items-center space-x-2 text-gray-600">
-          <Clock size={16} className="text-green-500" />
-          <span className="text-l font-semibold">{module.duration}</span>
+        <div className="text-sm text-gray-500">
+          <span className="font-medium">{module.topics.length} Topics Included</span>
         </div>
-      </div>
-
-      <div className="text-sm text-gray-500">
-        <span className="font-medium">{module.topics.length} Topics Included</span>
       </div>
     </div>
   );
@@ -319,15 +319,11 @@ const TopicCard = ({ topic }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 h-full">
-      <div className="flex items-start space-x-3">
-        <span className="text-2xl flex-shrink-0">
-          {topicIcons[topic.name] || "📚"}
-        </span>
-        <div className="flex-1">
-          <h4 className="font-semibold text-gray-800 mb-2">{topic.name}</h4>
-          <p className="text-m text-gray-600 leading-relaxed">{topic.description}</p>
-        </div>
+    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 h-full flex">
+      <span className="text-3xl flex-shrink-0 mr-3">{topicIcons[topic.name] || '📚'}</span>
+      <div>
+        <h4 className="font-semibold text-gray-800 mb-1">{topic.name}</h4>
+        <p className="text-sm text-gray-600 leading-relaxed">{topic.description}</p>
       </div>
     </div>
   );
@@ -341,27 +337,27 @@ export default function Courses() {
   const topics = getTopicsForAgeGroup(selectedAgeGroup);
 
   return (
-    <div className="min-h-screen bg-[#FFFFF0] px-6 py-10">
+    <div className="min-h-screen bg-[#FFFFF0] px-4 sm:px-6 lg:px-10 py-10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
             STEM Learning Hub
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Discover hands-on learning experiences tailored for every age group
           </p>
         </div>
 
-        {/* Age Groups Filter - Horizontal Layout */}
+        {/* Age Groups */}
         <div className="mb-12">
           <h2 className="text-lg font-bold text-gray-800 mb-4">Age groups</h2>
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {ageGroups.map((age) => (
               <button
                 key={age}
                 onClick={() => setSelectedAgeGroup(age)}
-                className={`p-4 rounded-lg border-2 font-semibold transition-all duration-200 ${
+                className={`p-4 rounded-lg border-2 font-semibold transition-all duration-200 text-center ${
                   selectedAgeGroup === age
                     ? "border-blue-500 bg-blue-50 text-blue-700"
                     : "border-gray-300 bg-white text-gray-700 hover:border-gray-400"
@@ -376,42 +372,33 @@ export default function Courses() {
         {/* Selected Course Info */}
         {selectedCourse && (
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
               {selectedCourse.title}
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-md sm:text-lg text-gray-600 max-w-2xl mx-auto">
               {selectedCourse.description}
             </p>
           </div>
         )}
 
-        {/* Modules Section */}
+        {/* Modules */}
         <div className="mb-16">
           <h3 className="text-lg font-bold text-gray-800 mb-6">Modules</h3>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {selectedCourse?.modules.map((module, idx) => (
               <ModuleCard key={`module-${idx}`} module={module} index={idx} />
             ))}
           </div>
         </div>
 
-        {/* Topics Section */}
+        {/* Topics */}
         <div className="mb-16">
-          <h3 className="text-lg font-bold text-gray-800 mb-2">
-            Topics to be covered in modules
-          </h3>
-          <div className="grid grid-cols-3 gap-4">
-            {topics.slice(0, 6).map((topic, idx) => (
+          <h3 className="text-lg font-bold text-gray-800 mb-4">Topics to be covered in modules</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {topics.map((topic, idx) => (
               <TopicCard key={`topic-${idx}`} topic={topic} />
             ))}
           </div>
-          {topics.length > 6 && (
-            <div className="grid grid-cols-3 gap-4 mt-4">
-              {topics.slice(6, 12).map((topic, idx) => (
-                <TopicCard key={`topic-${idx + 6}`} topic={topic} />
-              ))}
-            </div>
-          )}
         </div>
 
         {/* Extra Information Section */}
