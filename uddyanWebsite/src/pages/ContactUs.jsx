@@ -9,7 +9,7 @@ export default function ContactUs() {
     address: ""
   });
 
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const backendURL = import.meta.env.VITE_API_URL;
 
   // Fetch contact info from backend
   useEffect(() => {

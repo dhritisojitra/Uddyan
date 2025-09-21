@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { isLoggedIn, userData, setIsLoggedIn } = useContext(AppContent);
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const backendURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const [contactData, setContactData] = useState({

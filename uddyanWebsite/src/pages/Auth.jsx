@@ -6,7 +6,7 @@ import { AppContent } from "../context/AppContext"; // adjust path
 const LoginPage = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn, getUserData } = useContext(AppContent);
-   const backendURL = import.meta.env.VITE_BACKEND_URL;
+   const backendURL = import.meta.env.VITE_API_URL;
 
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);

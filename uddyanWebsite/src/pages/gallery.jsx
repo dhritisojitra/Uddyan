@@ -18,7 +18,7 @@ const Gallery = () => {
     const fetchImages = async () => {
       try {
     
-        const backendURL = import.meta.env.VITE_BACKEND_URL;
+        const backendURL = import.meta.env.VITE_API_URL;
         const res = await axios.get(`${backendURL}/api/uploads/all`, {
           withCredentials: true,
         });
