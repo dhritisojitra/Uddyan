@@ -6,7 +6,7 @@ import Carousel from './components/Carousel';
 import CoursesPage from './components/Courses';
 import Footer from "./components/Footer";
 import Gallery from "../src/pages/gallery"
-import AboutUs from "./pages/aboutUs";
+import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import LoginPage from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
