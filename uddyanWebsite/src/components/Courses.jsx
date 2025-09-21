@@ -174,7 +174,8 @@ const courses = [
         name: "Module 1",
         activities: "Custom",
         duration: "Project based",
-        description: "Professional-level customized projects for advanced students focusing on real-world engineering applications.",
+        description:
+          "Professional-level customized projects for advanced students focusing on real-world engineering applications.",
         topics: [
           "Electronics",
           "Physics",
@@ -188,13 +189,28 @@ const courses = [
       },
     ],
   },
+  {
+    id: "tinkering-lab",
+    title: "STEM Tinkering Lab Setup",
+    ageGroup: "STEM Tinkering Lab",
+    description: "Customised lab setup for schools with hands-on STEM activities.",
+    modules: [
+      {
+        name: "Tinkering Lab Program",
+        activities: "Customised",
+        duration: "3 to 6 months",
+        description: "Hands-on tinkering projects tailored for schools.",
+        topics: ["Customised STEM activities", "Innovation projects", "Maker culture"],
+      },
+    ],
+  },
 ];
 
 // Function to get all unique topics for a specific age group with descriptions
 const getTopicsForAgeGroup = (ageGroup) => {
-  const course = courses.find(c => c.ageGroup === ageGroup);
+  const course = courses.find((c) => c.ageGroup === ageGroup);
   if (!course) return [];
-  
+
   const topicDescriptions = {
     'Environment science': 'Study ecosystems, recycling, and how human activities affect the planet.',
     'Optic science': 'Discover light properties, reflection, refraction, and optical phenomena.',
@@ -215,45 +231,47 @@ const getTopicsForAgeGroup = (ageGroup) => {
     'Arduino': 'Program microcontrollers, create interactive projects and IoT devices.',
     'Drone modelling': 'Design, build, and program drones, study UAV technology.',
     'Electrical engineering': 'Advanced electrical systems, power distribution, and circuit design.',
-    'Customized projects as per requirement': 'Tailored projects based on individual interests and career goals.'
+    'Customized projects as per requirement': 'Tailored projects based on individual interests and career goals.',
+    'Customised STEM activities': 'Hands-on activities designed for schools to boost creativity and innovation.',
+    'Innovation projects': 'Encourage students to work on problem-solving and real-world applications.',
+    'Maker culture': 'Promote creativity, DIY mindset, and hands-on learning.'
   };
 
   const uniqueTopics = new Set();
-  course.modules.forEach(module => {
-    module.topics.forEach(topic => uniqueTopics.add(topic));
+  course.modules.forEach((module) => {
+    module.topics.forEach((topic) => uniqueTopics.add(topic));
   });
 
-  return Array.from(uniqueTopics).map(topic => ({
+  return Array.from(uniqueTopics).map((topic) => ({
     name: topic,
-    description: topicDescriptions[topic] || 'Hands-on learning experience in this STEM topic.'
+    description:
+      topicDescriptions[topic] || "Hands-on learning experience in this STEM topic.",
   }));
 };
 
 // Module card component
 const ModuleCard = ({ module, index }) => {
   const moduleColors = [
-    'from-blue-500 to-blue-600',
-    'from-green-500 to-green-600', 
-    'from-purple-500 to-purple-600'
+    "from-blue-500 to-blue-600",
+    "from-green-500 to-green-600",
+    "from-purple-500 to-purple-600",
   ];
 
   return (
     <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 h-full">
       <div className="flex items-center justify-between mb-4">
-        <div className={`p-2 rounded-lg bg-gradient-to-br ${moduleColors[index % moduleColors.length]}`}>
+        <div
+          className={`p-2 rounded-lg bg-gradient-to-br ${moduleColors[index % moduleColors.length]}`}
+        >
           <Target className="text-white" size={20} />
         </div>
         <span className="text-sm text-gray-500 font-medium">Level {index + 1}</span>
       </div>
-      
-      <h3 className="text-xl font-bold text-gray-800 mb-2">
-        {module.name}
-      </h3>
-      
-      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-        {module.description}
-      </p>
-      
+
+      <h3 className="text-xl font-bold text-gray-800 mb-2">{module.name}</h3>
+
+      <p className="text-gray-600 text-sm mb-4 leading-relaxed">{module.description}</p>
+
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-2 text-gray-600">
           <BookOpen size={16} className="text-blue-500" />
@@ -264,7 +282,7 @@ const ModuleCard = ({ module, index }) => {
           <span className="text-l font-semibold">{module.duration}</span>
         </div>
       </div>
-      
+
       <div className="text-sm text-gray-500">
         <span className="font-medium">{module.topics.length} Topics Included</span>
       </div>
@@ -275,37 +293,40 @@ const ModuleCard = ({ module, index }) => {
 // Topic card component
 const TopicCard = ({ topic }) => {
   const topicIcons = {
-    'Environment science': '🌿',
-    'Optic science': '🔬',
-    'Electricity': '⚡',
-    'Electronics': '🔌',
-    'Magnetism': '🧲',
-    'Mechanics': '⚙️',
-    'Construction': '🏗️',
-    'Aerospace modelling': '🚀',
-    'Science laws': '📐',
-    'Maths': '🔢',
-    'Sensors': '📡',
-    'Solar power': '☀️',
-    'Electromagnetism': '🌐',
-    'Hydraulics': '💧',
-    'Robotics': '🤖',
-    'Physics': '🔬',
-    'Arduino': '💻',
-    'Drone modelling': '🚁',
-    'Electrical engineering': '⚡',
-    'Customized projects as per requirement': '🛠️'
+    "Environment science": "🌿",
+    "Optic science": "🔬",
+    Electricity: "⚡",
+    Electronics: "🔌",
+    Magnetism: "🧲",
+    Mechanics: "⚙️",
+    Construction: "🏗️",
+    "Aerospace modelling": "🚀",
+    "Science laws": "📐",
+    Maths: "🔢",
+    Sensors: "📡",
+    "Solar power": "☀️",
+    Electromagnetism: "🌐",
+    Hydraulics: "💧",
+    Robotics: "🤖",
+    Physics: "🔬",
+    Arduino: "💻",
+    "Drone modelling": "🚁",
+    "Electrical engineering": "⚡",
+    "Customized projects as per requirement": "🛠️",
+    "Customised STEM activities": "🧪",
+    "Innovation projects": "💡",
+    "Maker culture": "🛠️",
   };
 
   return (
     <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 h-full">
       <div className="flex items-start space-x-3">
-        <span className="text-2xl flex-shrink-0">{topicIcons[topic.name] || '📚'}</span>
+        <span className="text-2xl flex-shrink-0">
+          {topicIcons[topic.name] || "📚"}
+        </span>
         <div className="flex-1">
           <h4 className="font-semibold text-gray-800 mb-2">{topic.name}</h4>
-          <p className="text-m text-gray-600 leading-relaxed">
-            {topic.description}
-          </p>
+          <p className="text-m text-gray-600 leading-relaxed">{topic.description}</p>
         </div>
       </div>
     </div>
@@ -316,7 +337,7 @@ export default function Courses() {
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("7–9 years");
 
   const ageGroups = [...new Set(courses.map((c) => c.ageGroup))];
-  const selectedCourse = courses.find(c => c.ageGroup === selectedAgeGroup);
+  const selectedCourse = courses.find((c) => c.ageGroup === selectedAgeGroup);
   const topics = getTopicsForAgeGroup(selectedAgeGroup);
 
   return (
@@ -335,7 +356,7 @@ export default function Courses() {
         {/* Age Groups Filter - Horizontal Layout */}
         <div className="mb-12">
           <h2 className="text-lg font-bold text-gray-800 mb-4">Age groups</h2>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-5 gap-4">
             {ageGroups.map((age) => (
               <button
                 key={age}
@@ -369,36 +390,107 @@ export default function Courses() {
           <h3 className="text-lg font-bold text-gray-800 mb-6">Modules</h3>
           <div className="grid grid-cols-3 gap-6">
             {selectedCourse?.modules.map((module, idx) => (
-              <ModuleCard 
-                key={`module-${idx}`}
-                module={module}
-                index={idx}
-              />
+              <ModuleCard key={`module-${idx}`} module={module} index={idx} />
             ))}
           </div>
         </div>
 
         {/* Topics Section */}
         <div className="mb-16">
-          <h3 className="text-lg font-bold text-gray-800 mb-2">Topics to be covered in modules</h3>
+          <h3 className="text-lg font-bold text-gray-800 mb-2">
+            Topics to be covered in modules
+          </h3>
           <div className="grid grid-cols-3 gap-4">
             {topics.slice(0, 6).map((topic, idx) => (
-              <TopicCard 
-                key={`topic-${idx}`}
-                topic={topic}
-              />
+              <TopicCard key={`topic-${idx}`} topic={topic} />
             ))}
           </div>
           {topics.length > 6 && (
             <div className="grid grid-cols-3 gap-4 mt-4">
               {topics.slice(6, 12).map((topic, idx) => (
-                <TopicCard 
-                  key={`topic-${idx + 6}`}
-                  topic={topic}
-                />
+                <TopicCard key={`topic-${idx + 6}`} topic={topic} />
               ))}
             </div>
           )}
+        </div>
+
+        {/* Extra Information Section */}
+        <div className="mb-16 space-y-8 text-gray-700">
+          {/* First Row of Cards */}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Engineering Project Guidance
+              </h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Diploma/UG/PG students (Electrical Engg.)</li>
+                <li>Price: Project dependent</li>
+              </ul>
+            </div>
+
+            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Customised STEM Courses
+              </h3>
+              <p>Available for all age groups.</p>
+            </div>
+
+            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                STEM Tinkering Lab Setup
+              </h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Customised</li>
+                <li>Duration: 3 to 6 months</li>
+                <li>Price: Based on setup</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Second Row of Cards */}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Teachers Training Module
+              </h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Customised</li>
+                <li>Duration: 20 hrs</li>
+                <li>Price: </li>
+              </ul>
+            </div>
+
+            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Other Services
+              </h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Science Fair/Exhibition planning &amp; guidance</li>
+                <li>STEM workshops</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Notes */}
+          <div className="text-sm text-gray-600 space-y-1">
+            <p>
+              * Activities are subjected to change as per availability of
+              materials/kits.
+            </p>
+            <p>** Price is subjected to vary if material price changes.</p>
+            <p>*** Transportation charges extra if applicable.</p>
+          </div>
+
+          {/* Closing Note */}
+          <div className="text-center mt-10">
+            <h2 className="text-3xl font-bold text-gradient bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-4">
+              Join us today and discover the wonders of STEM!
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Whether you're a curious beginner or an experienced maker, our STEM
+              laboratory has something for YOU!
+            </p>
+          </div>
         </div>
       </div>
     </div>
