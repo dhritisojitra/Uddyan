@@ -15,8 +15,8 @@ const uplaodRouter = require('./Images/upload');
 const fetchImagesRouter = require('./Images/FetchImages');
 
 app.use(cors({
-  origin: "http://localhost:5173", // your Vite frontend
-  credentials: true,              // allow cookies to be sent
+  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  credentials: true,
 }));
 app.use(express.json());
 app.use(cookieParser());
