@@ -192,8 +192,8 @@ const AboutUs = () => {
             and resources in our official brochure.
           </p>
           <a
-            href="/Uddyan-STEM-Courses-2025.docx"
-            download="Uddyan-STEM-Courses-2025.docx"
+            href="/uddyan-brochure-2025.pdf"
+            download="uddyan-brochure-2025.pdf"
             className="inline-block bg-[#FFD700] text-gray-900 font-semibold px-5 py-3 rounded-lg shadow hover:bg-yellow-500 transition-colors"
           >
             Download Brochure
