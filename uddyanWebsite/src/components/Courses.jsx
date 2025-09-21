@@ -196,16 +196,16 @@ const getTopicsForAgeGroup = (ageGroup) => {
   if (!course) return [];
   
   const topicDescriptions = {
-    'Environment science': 'Explore ecology, sustainability, and environmental impact through hands-on experiments.',
+    'Environment science': 'Study ecosystems, recycling, and how human activities affect the planet.',
     'Optic science': 'Discover light properties, reflection, refraction, and optical phenomena.',
-    'Electricity': 'Learn electrical circuits, conductivity, and basic electrical principles.',
+    'Electricity': 'Build small circuits to understand how current works.',
     'Electronics': 'Build electronic circuits, work with components, and understand digital systems.',
     'Magnetism': 'Investigate magnetic fields, electromagnets, and magnetic properties.',
-    'Mechanics': 'Study motion, forces, simple machines, and mechanical engineering principles.',
-    'Construction': 'Design and build structures, learn engineering principles and materials science.',
-    'Aerospace modelling': 'Create aircraft and rocket models, study aerodynamics and flight principles.',
+    'Mechanics': 'Explore motion, speed, forces, and how gears, pulleys, and levers make work easier.',
+    'Construction': 'Design and test models of bridges, towers, and other structures using different materials.',
+    'Aerospace modelling': 'Create model planes or rockets and test how aerodynamics affects flight.',
     'Science laws': 'Understand fundamental scientific principles and natural laws.',
-    'Maths': 'Apply mathematical concepts in practical STEM projects and problem-solving.',
+    'Maths': 'Apply maths to real problems like measuring, designing, and calculating in STEM projects.',
     'Sensors': 'Work with various sensors, data collection, and measurement technologies.',
     'Solar power': 'Learn renewable energy, photovoltaic systems, and sustainable power generation.',
     'Electromagnetism': 'Explore electromagnetic fields, induction, and electromagnetic applications.',
