@@ -1,8 +1,9 @@
 import React from "react";
-import img1 from "../assets/img1.jpeg"
-import img2 from "../assets/img2.jpeg"
-import img3 from "../assets/img3.jpeg"
-import img4 from "../assets/img4.jpeg"
+import img1 from "../assets/img1.jpeg";
+import img2 from "../assets/img2.jpeg";
+import img3 from "../assets/img3.jpeg";
+import img4 from "../assets/img4.jpeg";
+import { Link } from "react-router-dom";
 
 const cards = [
   {
@@ -18,15 +19,15 @@ const cards = [
     image: img2,
   },
   {
-    title: "Project Guidance",
-    description: "Expert mentorship for school exhibitions and engineering projects.",
-    tags: ["Problem Solving", "Innovation", "Collaboration"],
+    title: "Resources",
+    description: "STEM kits and components for schools and hobbyists.",
+    tags: ["Robotics Kits", "Microcontrollers and sensors", "Circuits and componenets","Computer with software","3D-printer", "Project Kits"],
     image: img3,
   },
   {
     title: "STEM Lab Setup",
-    description: "Support for schools in setting up tinkering and STEM labs.",
-    tags: ["Tinkering Labs", "STEM Kits", "Teacher Training"],
+    description: "Support in setting up tinkering and STEM labs.",
+    tags: ["Tinkering Labs", "STEM Kits", "Teacher Training", "Collaborative Learning"],
     image: img4,
   },
 ];
@@ -34,12 +35,11 @@ const cards = [
 const Cards = () => {
   return (
     <section className="py-16 px-10 bg-[#FFFFF0]">
-      <div className="max-w-7xl mx-auto grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20 justify-items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20 justify-items-center">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="relative rounded-2xl shadow-md overflow-hidden p-3 flex flex-col transition-transform transform hover:scale-105 w-80 h-[420px]"
- 
+            className="relative rounded-2xl shadow-md overflow-hidden p-3 flex flex-col w-80 h-[420px] transition-transform transform hover:scale-105"
           >
             <div
               className="absolute inset-0 bg-cover bg-center"
@@ -62,13 +62,18 @@ const Cards = () => {
                   </span>
                 ))}
               </div>
-              <button className="mt-auto flex items-center justify-between text-gray-900 font-semibold bg-white/80 px-3 py-2 rounded-xl shadow text-sm">
-                Explore
-                <span className="ml-2">→</span>
-              </button>
+              {/* Removed individual button from here */}
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Common button below all cards */}
+      <div className="mt-10 flex justify-center">
+        <Link to='/CoursesPage'><button className="text-white font-semibold bg-[#007FFF]  px-6 py-3 rounded-xl shadow text-xl hover:scale-105 transition-transform">
+          Explore Now
+        </button>
+        </Link>
       </div>
     </section>
   );

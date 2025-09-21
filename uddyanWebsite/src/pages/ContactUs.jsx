@@ -28,19 +28,19 @@ export default function ContactUs() {
   }, []);
 
   return (
-    <div className="bg-[#FFFDEB] min-h-screen flex items-center justify-center px-55 py-16">
-      <div className="max-w-8xl w-full bg-white rounded-2xl shadow-xl p-10 transition-all transform hover:scale-[1.02] hover:shadow-2xl duration-500 animate-pulse-once">
-        <h1 className="text-4xl font-bold text-[#007FFF] text-center mb-8 animate-bounce-in">
+    <div className="bg-[#FFFDEB] min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-10 py-16">
+      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 sm:p-10 transition-all transform hover:scale-[1.02] hover:shadow-2xl duration-500 animate-pulse-once">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#007FFF] text-center mb-8 animate-bounce-in">
           Contact Us
         </h1>
 
         <div className="space-y-6 text-gray-800">
-          {/* Dynamic Address from backend */}
-          <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-yellow-100 transition-all duration-300 hover:translate-x-2 hover:shadow-md group animate-slide-in-left">
+          {/* Address */}
+          <div className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-lg hover:bg-yellow-100 transition-all duration-300 hover:translate-x-2 hover:shadow-md group animate-slide-in-left">
             <MapPin className="w-6 h-6 text-[#007FFF] flex-shrink-0 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12" />
             <div>
               <h2 className="font-semibold text-lg group-hover:text-[#007FFF] transition-colors duration-300">
-                Address (DB)
+                Address
               </h2>
               <p className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
                 {contactData.address || "Loading..."}
@@ -49,7 +49,7 @@ export default function ContactUs() {
           </div>
 
           {/* Phone */}
-          <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-yellow-100 transition-all duration-300 hover:translate-x-2 hover:shadow-md group animate-slide-in-right">
+          <div className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-lg hover:bg-yellow-100 transition-all duration-300 hover:translate-x-2 hover:shadow-md group animate-slide-in-right">
             <Phone className="w-6 h-6 text-[#007FFF] flex-shrink-0 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12" />
             <div>
               <h2 className="font-semibold text-lg group-hover:text-[#007FFF] transition-colors duration-300">
@@ -62,7 +62,7 @@ export default function ContactUs() {
           </div>
 
           {/* Email */}
-          <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-yellow-100 transition-all duration-300 hover:translate-x-2 hover:shadow-md group animate-slide-in-left">
+          <div className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-lg hover:bg-yellow-100 transition-all duration-300 hover:translate-x-2 hover:shadow-md group animate-slide-in-left">
             <Mail className="w-6 h-6 text-[#007FFF] flex-shrink-0 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12" />
             <div>
               <h2 className="font-semibold text-lg group-hover:text-[#007FFF] transition-colors duration-300">
@@ -70,17 +70,15 @@ export default function ContactUs() {
               </h2>
               <a
                 href={`mailto:${contactData.email}`}
-                className="text-gray-700 hover:text-[#007FFF] transition-colors duration-300 hover:underline decoration-2 underline-offset-2"
+                className="text-gray-700 hover:text-[#007FFF] transition-colors duration-300 hover:underline decoration-2 underline-offset-2 break-words"
               >
                 {contactData.email || "Loading..."}
               </a>
             </div>
           </div>
 
-        
-
-          {/* Static Hardcoded Working Hours */}
-          <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-yellow-100 transition-all duration-300 hover:translate-x-2 hover:shadow-md group animate-slide-in-left">
+          {/* Working Hours */}
+          <div className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-lg hover:bg-yellow-100 transition-all duration-300 hover:translate-x-2 hover:shadow-md group animate-slide-in-left">
             <Clock className="w-6 h-6 text-[#007FFF] flex-shrink-0 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12" />
             <div>
               <h2 className="font-semibold text-lg group-hover:text-[#007FFF] transition-colors duration-300">
@@ -96,6 +94,7 @@ export default function ContactUs() {
         </div>
       </div>
 
+      {/* Animations */}
       <style jsx>{`
         @keyframes bounce-in {
           0% {

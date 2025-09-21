@@ -10,10 +10,12 @@ import AboutUs from "./pages/aboutUs";
 import ContactUs from "./pages/ContactUs";
 import LoginPage from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop/>
       <Navbar /> 
 
       <Routes>
@@ -49,6 +51,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       <Footer/>
+    
     </Router>
   );
 }
