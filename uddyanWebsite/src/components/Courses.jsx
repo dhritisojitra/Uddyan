@@ -13,7 +13,6 @@ const courses = [
         name: "Module 1",
         activities: 12,
         duration: "18 hrs",
-        description: "",
         topics: [
           "Environment science",
           "Electricity",
@@ -27,7 +26,6 @@ const courses = [
         name: "Module 2",
         activities: 24,
         duration: "36 hrs",
-        description: "",
         topics: [
           "Environment science",
           "Electricity",
@@ -41,7 +39,6 @@ const courses = [
         name: "Module 3",
         activities: 48,
         duration: "72 hrs",
-        description: "",
         topics: [
           "Environment science",
           "Electricity",
@@ -63,7 +60,6 @@ const courses = [
         name: "Module 1",
         activities: 12,
         duration: "18 hrs",
-        description: "",
         topics: [
           "Environment science",
           "Optic science",
@@ -81,7 +77,6 @@ const courses = [
         name: "Module 2",
         activities: 24,
         duration: "36 hrs",
-        description: "",
         topics: [
           "Environment science",
           "Optic science",
@@ -99,7 +94,6 @@ const courses = [
         name: "Module 3",
         activities: 48,
         duration: "72 hrs",
-        description: "",
         topics: [
           "Environment science",
           "Optic science",
@@ -125,7 +119,6 @@ const courses = [
         name: "Module 1",
         activities: 12,
         duration: "18 hrs",
-        description: "",
         topics: [
           "Electricity",
           "Electronics",
@@ -142,7 +135,6 @@ const courses = [
         name: "Module 2",
         activities: 24,
         duration: "36 hrs",
-        description: "",
         topics: [
           "Electricity",
           "Electronics",
@@ -159,7 +151,6 @@ const courses = [
         name: "Module 3",
         activities: "Custom",
         duration: "Project based",
-        description: "",
         topics: ["Customized projects as per requirement"],
       },
     ],
@@ -174,8 +165,6 @@ const courses = [
         name: "Module 1",
         activities: "Custom",
         duration: "Project based",
-        description:
-          "Professional-level customized projects for advanced students focusing on real-world engineering applications.",
         topics: [
           "Electronics",
           "Physics",
@@ -199,7 +188,6 @@ const courses = [
         name: "Tinkering Lab Program",
         activities: "Customised",
         duration: "3 to 6 months",
-        description: "Hands-on tinkering projects tailored for schools.",
         topics: ["Customised STEM activities", "Innovation projects", "Maker culture"],
       },
     ],
@@ -268,7 +256,6 @@ const ModuleCard = ({ module, index }) => {
         </div>
         
         <h3 className="text-xl font-bold text-gray-800 mb-2">{module.name}</h3>
-        <p className="text-gray-600 text-sm mb-4 leading-relaxed">{module.description}</p>
       </div>
       
       <div>
@@ -352,7 +339,7 @@ export default function Courses() {
         {/* Age Groups */}
         <div className="mb-12">
           <h2 className="text-lg font-bold text-gray-800 mb-4">Age groups</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {ageGroups.map((age) => (
               <button
                 key={age}
@@ -402,83 +389,57 @@ export default function Courses() {
         </div>
 
         {/* Extra Information Section */}
-        <div className="mb-16 space-y-8 text-gray-700">
-          {/* First Row of Cards */}
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Engineering Project Guidance
-              </h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Diploma/UG/PG students (Electrical Engg.)</li>
-                <li>Price: Project dependent</li>
-              </ul>
+{selectedAgeGroup === "Tinkering Lab" && (
+          <div className="mb-16 space-y-8 text-gray-700">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">Engineering Project Guidance</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>Diploma/UG/PG students (Electrical Engg.)</li>
+                  <li>Price: Project dependent</li>
+                </ul>
+              </div>
+              <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">Customised STEM Courses</h3>
+                <p>Available for all age groups.</p>
+              </div>
             </div>
 
-            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Customised STEM Courses
-              </h3>
-              <p>Available for all age groups.</p>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">Teachers Training Module</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>Customised</li>
+                  <li>Duration: 20 hrs</li>
+                </ul>
+              </div>
+              <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">Other Services</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>Science Fair/Exhibition planning & guidance</li>
+                  <li>STEM workshops</li>
+                </ul>
+              </div>
             </div>
 
-            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                STEM Tinkering Lab Setup
-              </h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Customised</li>
-                <li>Duration: 3 to 6 months</li>
-                <li>Price: Based on setup</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Second Row of Cards */}
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Teachers Training Module
-              </h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Customised</li>
-                <li>Duration: 20 hrs</li>
-                <li>Price: </li>
-              </ul>
+            {/* Notes */}
+            <div className="text-sm text-gray-600 space-y-1">
+              <p>* Activities are subject to change as per availability of materials/kits.</p>
+              <p>** Price may vary if material costs change.</p>
+              <p>*** Transportation charges extra if applicable.</p>
             </div>
 
-            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Other Services
-              </h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Science Fair/Exhibition planning &amp; guidance</li>
-                <li>STEM workshops</li>
-              </ul>
+            {/* Closing Note */}
+            <div className="text-center mt-10">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text mb-4">
+                Join us today and discover the wonders of STEM!
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Whether you're a curious beginner or an experienced maker, our STEM laboratory has something for YOU!
+              </p>
             </div>
           </div>
-
-          {/* Notes */}
-          <div className="text-sm text-gray-600 space-y-1">
-            <p>
-              * Activities are subjected to change as per availability of
-              materials/kits.
-            </p>
-            <p>** Price is subjected to vary if material price changes.</p>
-            <p>*** Transportation charges extra if applicable.</p>
-          </div>
-
-          {/* Closing Note */}
-          <div className="text-center mt-10">
-            <h2 className="text-3xl font-bold text-gradient bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-4">
-              Join us today and discover the wonders of STEM!
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Whether you're a curious beginner or an experienced maker, our STEM
-              laboratory has something for YOU!
-            </p>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

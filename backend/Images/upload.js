@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Image = require("../models/Upload"); // Your schema
 const { deleteImage } = require("../Images/ImageController");
+const userAuth = require("../middleware/userAuth");
 
 // Save Cloudinary URL to MongoDB
 router.post("/save", async (req, res) => {
@@ -18,5 +19,5 @@ router.post("/save", async (req, res) => {
   }
 });
 
-router.delete("/:id", deleteImage);
+router.delete("/:id", userAuth ,deleteImage);
 module.exports = router;
