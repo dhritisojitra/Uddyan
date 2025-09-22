@@ -43,8 +43,8 @@ const login = async (req, res) => {
  const logout = (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
-    secure: false, // change to true in production (HTTPS)
-    sameSite: 'Lax',
+    secure: true, // change to true in production (HTTPS)
+    sameSite: 'None',
   });
 
   return res.json({
