@@ -190,6 +190,25 @@ const courses = [
         duration: "3 to 6 months",
         topics: ["Customised STEM activities", "Innovation projects", "Maker culture"],
       },
+       {
+        name: "Teacher's Training Module",
+        activities: "Customised",
+        duration: "20 hours",
+        topics: ["Customised STEM activities", "Innovation projects", "Maker culture"],
+      },
+       {
+        name: "Other Services",
+        activities: "Customised",
+        duration: "Customised",
+        topics: ["Science Fair/Exhibition planning & guidance", "STEM workshops"],
+      },
+         {
+        name: "Engineering Project Guidance",
+        activities: "Diploma/UG/PG students (Electrical Engg.)",
+        duration: "Customised",
+        topics: ["Customised STEM activities", "Innovation projects", "Maker culture"],
+      },
+      
     ],
   },
 ];
@@ -217,7 +236,7 @@ const getTopicsForAgeGroup = (ageGroup) => {
     'Robotics': 'Build and program robots, learn automation and artificial intelligence basics.',
     'Physics': 'Explore fundamental physics concepts through practical experiments.',
     'Arduino': 'Program microcontrollers, create interactive projects and IoT devices.',
-    'Drone modelling': 'Design, build, and program drones, study UAV technology.',
+    'Drone modelling': 'Design and assemble drones, study UAV technology.',
     'Electrical engineering': 'Advanced electrical systems, power distribution, and circuit design.',
     'Customized projects as per requirement': 'Tailored projects based on individual interests and career goals.',
     'Customised STEM activities': 'Hands-on activities designed for schools to boost creativity and innovation.',

@@ -138,7 +138,7 @@ const AboutUs = () => {
                   "Experiments using scientific instruments",
                   "STEM projects for school exhibitions",
                   "DIY workshops on STEM activities for all ages",
-                  "Setting up tinkering labs at schools",
+                  "Setting up tinkering/STEM labs at schools",
                 ].map((item, index) => (
                   <div
                     key={index}

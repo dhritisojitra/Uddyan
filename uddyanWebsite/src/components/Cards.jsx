@@ -27,7 +27,7 @@ const cards = [
   {
     title: "STEM Lab Setup",
     description: "Support in setting up tinkering and STEM labs.",
-    tags: ["Tinkering Labs", "STEM Kits", "Teacher Training", "Collaborative Learning"],
+    tags: ["STEM Labs", "STEM Kits", "Teacher Training", "Collaborative Learning"],
     image: img4,
   },
 ];
