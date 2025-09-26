@@ -85,7 +85,7 @@ export default function ContactUs() {
                 Working Hours
               </h2>
               <p className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
-                Mon – Fri: 9:00 AM – 6:00 PM <br />
+                Mon – Fri: 9:00 AM – 7:30 PM <br />
                 Sat: 10:00 AM – 2:00 PM <br />
                 Sun: Closed
               </p>
