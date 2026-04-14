@@ -15,13 +15,13 @@ A full-stack e-commerce platform built for a real-world client DIY STEM Lab stor
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page]![alt text](image.png)
+![alt text](image.png)
 
 ### 🛍️ Course Listing Page
-![Products]![alt text](image-1.png)
+![alt text](image-1.png)
 
 ### 🧑‍💻 Gallery
-![Admin Dashboard]![alt text](image-2.png)
+![alt text](image-2.png)
 
 ---
 
