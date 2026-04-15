@@ -57,3 +57,12 @@ A full-stack e-commerce platform built for a real-world client DIY STEM Lab stor
 ---
 
 ## 🧩 Architecture Overview
+Frontend (React + Vercel)
+|
+| REST API (Axios)
+↓
+Backend (Node + Express on Render)
+|
+| MongoDB Atlas
+|
+└── Cloudinary (Image Storage)
